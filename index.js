@@ -3,6 +3,7 @@ const app = express();
 const mongoose = require('mongoose');
 const users = require('./MOCK_DATA.json');
 const PORT = 8000;
+var cors=require('cors');
 
 mongoose.connect("mongodb://127.0.0.1:27017/UsersDB", { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => console.log("Connection Success"))
@@ -10,6 +11,7 @@ mongoose.connect("mongodb://127.0.0.1:27017/UsersDB", { useNewUrlParser: true, u
 
 const db = mongoose.connection;
 app.use(express.json());
+app.use(cors());
 
 const usersSchema = new mongoose.Schema({
   first_name: String,
